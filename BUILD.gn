@@ -1,0 +1,48 @@
+# Copyright 2016 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# there are some gcc sins committed in the toybox source code
+# and for building with clang we must hold our nose
+config("toybox_config") {
+   cflags_c = [ "-Wno-error=string-plus-int",
+                "-Wno-error=sometimes-uninitialized",
+                "-Wno-error=sign-compare",
+                "-Wno-error=char-subscripts",
+                "-Wno-error=tautological-constant-out-of-range-compare",
+                "-Wno-error=gnu-variable-sized-type-not-at-end" ]
+}
+
+executable("toybox") {
+  configs += [ ":toybox_config" ]
+  public = [
+    "toys.h",
+  ]
+  include_dirs = [
+    ".",
+    "generated",
+    "../../magenta/third_party/ulib/musl/include",
+    "../../magenta/third_party/ulib/musl/include/sys"
+  ]
+  sources = [
+            "lib/args.c",
+            "lib/dirtree.c",
+            "lib/getmountlist.c",
+            "lib/interestingtimes.c",
+            "lib/lib.c",
+            "lib/linestack.c",
+            "lib/llist.c",
+            "lib/net.c",
+            "lib/portability.c",
+            "lib/password.c",
+            "lib/xwrap.c",
+            "lib/help.c",
+            "main.c",
+            "toys/posix/false.c",
+            "toys/example/hello.c",
+            "toys/posix/wc.c",
+            "toys.h",
+            "generated"
+  ]
+}
+
