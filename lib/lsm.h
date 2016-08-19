@@ -3,7 +3,8 @@
  * Copyright 2015 Rob Landley <rob@landley.net>
  */
 
-#include <sys/xattr.h>
+// TAG HACK HACK HACK
+// #include <sys/xattr.h>
 
 #if CFG_TOYBOX_SELINUX
 #include <selinux/selinux.h>
@@ -53,7 +54,7 @@ static inline char *lsm_name(void)
 static inline char *lsm_context(void)
 {
   int ok = 0;
-  char *result;
+  char *result=NULL;
 
   if (CFG_TOYBOX_SMACK) ok = smack_new_label_from_self(&result) > 0;
   else ok = getcon(&result) == 0;
