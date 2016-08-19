@@ -131,9 +131,10 @@ int dirtree_recurse(struct dirtree *node,
 {
   struct dirtree *new, **ddt = &(node->child);
   struct dirent *entry;
-  DIR *dir;
+  DIR *dir=NULL;
 
   node->dirfd = dirfd;
+  /* TAG HACK HACK HACK 
   if (node->dirfd == -1 || !(dir = fdopendir(node->dirfd))) {
     if (!(flags & DIRTREE_SHUTUP)) {
       char *path = dirtree_path(node, 0);
@@ -143,7 +144,7 @@ int dirtree_recurse(struct dirtree *node,
     close(node->dirfd);
 
     return flags;
-  }
+  } */
 
   // according to the fddir() man page, the filehandle in the DIR * can still
   // be externally used by things that don't lseek() it.
