@@ -65,7 +65,9 @@
 #include <pty.h>
 #include <sys/ioctl.h>
 #include <sys/statfs.h>
-#include <sys/sysinfo.h>
+// TAG HACK HACK HACK
+//#include <sys/sysinfo.h>
+#include "generated/sysinfo.h"
 
 #include "lib/lib.h"
 #include "lib/lsm.h"
