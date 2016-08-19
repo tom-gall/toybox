@@ -29,9 +29,10 @@
 
 // Various constants old build environments might not have even if kernel does
 
-#ifndef AT_FDCWD
-#define AT_FDCWD -100
-#endif
+// TAG HACK HACK HACK
+//#ifndef AT_FDCWD
+//#define AT_FDCWD -100
+//#endif
 
 #ifndef AT_SYMLINK_NOFOLLOW
 #define AT_SYMLINK_NOFOLLOW 0x100
